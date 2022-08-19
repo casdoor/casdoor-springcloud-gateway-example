@@ -1,0 +1,50 @@
+server:
+  port: 9090
+
+spring:
+  application:
+    name: casdoor-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: api-route
+          uri: http://localhost:9091
+          predicates:
+            - Path=/api/**
+
+
+casdoor:
+  endpoint: http://124.222.224.173:8105
+  client-id: 0d64b7b0c0501d48c55a
+  client-secret: 86e904575ae4f0beef1b0c0a3f35b5c41118c1b8
+  jwt-public-key: "-----BEGIN CERTIFICATE-----\n\
+  MIIE3TCCAsWgAwIBAgIDAeJAMA0GCSqGSIb3DQEBCwUAMCgxDjAMBgNVBAoTBWFk\n\
+  bWluMRYwFAYDVQQDEw1jZXJ0LWJ1aWx0LWluMB4XDTIyMDgxODExMzUyOFoXDTQy\n\
+  MDgxODExMzUyOFowKDEOMAwGA1UEChMFYWRtaW4xFjAUBgNVBAMTDWNlcnQtYnVp\n\
+  bHQtaW4wggIiMA0GCSqGSIb3DQEBAQUAA4ICDwAwggIKAoICAQC/lSF8ywkPC0K0\n\
+  +iW0mEqQdJMlXqYCiPafmdEo5SUoIyEzPvR9DVa1XPCpA1AxZXZDbjGMAoLEAkZQ\n\
+  P/07bnX/vQUkgj7PXEiH//AXiA9d6it/bMsw4AVL/5C9MwXeuniBV6YpkKBA/XJ2\n\
+  wdU75Nm76hiOz8kT6rqrfFDQiGgyPrb4UCTffO67Xt2OOnD9KABX+H3X04uufZuL\n\
+  o5bMXUvrkVkbJCzqZkHot3TH882Hf8dfOesuD1HEVjejo/sYsUAyEL4VnjaE1dEp\n\
+  3/buUpbodFGWE5hHBk4C+W6Td8x+JoZfB+1foL8FIKJirl1fp3eBk9YJv611q6vs\n\
+  rWI/WEcc9wh+llNv7Z1Swi82+5maclwujJ14yq+7JqCn/PIoq5Pi9yFBYqi824/9\n\
+  UPpMiK+jsRNXvo/IidCu9EOssm0tJmV7Xa9ux+OeGCcRpROeC06L3KxI0GXsmHlx\n\
+  SWIUNd8rBidyILsx3Tbg/fMm5eAHXOOAN2PDzLU/eCQQB/j+L5TgxpwVLCqPkyv9\n\
+  zZ8+76zGlSXjV17G8xduHGaX1bzyUQHJ1exkDgBM/64g/V1j8JE6Ewe0JUVcwo7E\n\
+  2hcOJzoKgJEHc/FsZxF0F+njhCS9LArC7bjL88KXxRa3+IJzTuLbD3Ec9H/qnkEL\n\
+  o/odb0+2Ns9XrlBM3/jagb6twEL/pQIDAQABoxAwDjAMBgNVHRMBAf8EAjAAMA0G\n\
+  CSqGSIb3DQEBCwUAA4ICAQAEBIOC94A0zN+p93UU5LNwxU3OdHr2GDyucKsOQfyk\n\
+  AFvkwFeu10Qoee2AtCpxO0IS8svuhbaU2EMeEZe8Rt1ja7RlVfDTV5rWdmH6el/B\n\
+  SDX5cYu2c0WDDi7gVYvdEL2RUWU2d7smAbpjLfV3eqSmrJTiqTpPseR690CGXRJ1\n\
+  /tFKTgpQH7Xh+BCc5yyNRUlkVAfu6m/gLEFhnXJKh5y4sVO71J69+MJ+ZFzdSlVd\n\
+  E4bn2iN7Ks3NwURB0pBbDO1aTyF7xEGZ2gpbvEYa4VIzsvjIUFzLtgchUyuBGwkM\n\
+  yqGWJEHqNct9vvuCzBpQcqrBVOR044umJ70MnhJt2lrV0IOkgSpjDqDUv8E5ofOs\n\
+  sSLT17R388lI3UjolkWYVmix1Tok0t/7XfwhDXJOPwblGsq0iComU5iNJS7zgzGY\n\
+  lVwrdT0qIZ5viJNIS7oi3EPRbsW5AjOel6MIJcLlravCLNviJcFcAiUGyWJf+me6\n\
+  u0mPbV5ZQLLKdKbi06+FRJLbgs0fXZBQsjLOuzlBwcmG4Mc//m2zLt7jl5ZQFEp3\n\
+  SoKIUfM4ETXzk+LjLIcGmaVs+JMJfmh7sOdkHdgJrj+C9EoYNau3CerMnIvQGV4i\n\
+  P1twHnLRweQQY3h5qBvFjPprhn+6tFiL2e05NiGfMVO/+qodLUjesZedSRUnM1u8\n\
+  uA==\n\
+  -----END CERTIFICATE-----"
+  organization-name: built-in
+  application-name: app-built-in

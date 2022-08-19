@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+<div>
+    <h1>Casdoor</h1>
+    <button th:attr="onclick=|getResource()|" type="button">Get Resource</button>
+    <br/>
+    <button style="margin-top: 10px;" th:attr="onclick=|updateResource()|" type="button">Update Resource</button>
+    <br/>
+    <div id="res" style="margin-top: 20px"></div>
+</div>
+<script>
+    function getResource() {
+        $.ajax({
+            url: '/api/resource/getResource',
+            type: 'get',
+            dataType: 'json',
+            success: function (data) {
+                $("#res").text(JSON.stringify(data.result))
+            },
+            error: function (data) {
+                if (data.status === 401) {
+                    window.location.href = '/toLogin'
+                } else {
+                    alert('Timeout!');
+                }
+            }
+        })
+    }
+
+    function updateResource() {
+        $.ajax({
+            url: `/api/resource/updateResource`,
+            type: 'post',
+            dataType: 'json',
+            success: function (data) {
+                $("#res").text(JSON.stringify(data.result))
+            },
+            error: function (data) {
+                if (data.status === 401) {
+                    window.location.href = '/toLogin'
+                } else {
+                    alert('Timeout!');
+                }
+            }
+        })
+    }
+
+    window.onload = function () {
+
+    }
+</script>
+</body>
+</html>
