@@ -153,7 +153,7 @@ in advance.
 
 ```java
 @RequestMapping("login")
-public Mono<String> login(){
+public Mono<String> login() {
     return Mono.just("redirect:" + casdoorAuthService.getSigninUrl("http://localhost:9090/callback"));
 }
 ```
