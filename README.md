@@ -154,8 +154,8 @@ in advance.
 ```java
 @RequestMapping("login")
 public Mono<String> login(){
-    return Mono.just("redirect:"+casdoorAuthService.getSigninUrl("http://localhost:9090/callback"));
-    }
+    return Mono.just("redirect:" + casdoorAuthService.getSigninUrl("http://localhost:9090/callback"));
+}
 ```
 
 After Casdoor verification passed, it will be redirected to your application with code and state.
