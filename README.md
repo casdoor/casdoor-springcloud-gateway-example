@@ -1,4 +1,4 @@
-# casdoor-spring-boot-example
+# casdoor-springcloud-gateway-example
 
 This is an example on how to use `casdoor-spring-boot-starter` as a OAuth2 plugin in Spring Cloud Gateway. We will show
 you the steps below.
@@ -101,7 +101,7 @@ spring:
             - Path=/api/**
 ```
 
-### Step5: Add the CasdoorAuthFilter
+### Step4: Add the CasdoorAuthFilter
 
 Add an implementation class of GlobalFilter to the gateway for identity verification, such as CasdoorAuthFilter in this
 example.
@@ -133,9 +133,7 @@ public class CasdoorAuthFilter implements GlobalFilter, Ordered {
 }
 ```
 
-
-
-### Step4: Get the Service and use
+### Step5: Get the Service and use
 
 Now provide 5 services: `CasdoorAuthService`, `CasdoorUserService`, `CasdoorEmailService`, `CasdoorSmsService`
 and `CasdoorResourceService`.
@@ -155,9 +153,9 @@ in advance.
 
 ```java
 @RequestMapping("login")
-public Mono<String> login() {
-    return Mono.just("redirect:" + casdoorAuthService.getSigninUrl("http://localhost:9090/callback"));
-}
+public Mono<String> login(){
+    return Mono.just("redirect:"+casdoorAuthService.getSigninUrl("http://localhost:9090/callback"));
+    }
 ```
 
 After Casdoor verification passed, it will be redirected to your application with code and state.
@@ -176,10 +174,10 @@ public Mono<String> callback(String code,String state,ServerWebExchange exchange
         token=casdoorAuthService.getOAuthToken(code,state);
         user=casdoorAuthService.parseJwtToken(token);
     }catch(CasdoorAuthException e){
-        e.printStackTrace();
+    	e.printStackTrace();
     }
-        CasdoorUser finalUser=user;
-        return exchange.getSession().flatMap(session->{
+    CasdoorUser finalUser=user;
+    return exchange.getSession().flatMap(session->{
         session.getAttributes().put("casdoorUser",finalUser);
         return Mono.just("redirect:/");
     });
@@ -208,9 +206,9 @@ Examples of APIs are shown below.
     - `CasdoorResponse response = casdoorResourceService.uploadResource(user, tag, parent, fullFilePath, file);`
     - `CasdoorResponse response = casdoorResourceService.deleteResource(file.getName());`
 
-### Step5: Restart project
+### Step6: Restart project
 
-After start,  open your favorite browser and visit **http://localhost:9090**, then click any button which can request resources from `casdoor-api`.
+After start, open your favorite browser and visit **http://localhost:9090**, then click any button which can request resources from `casdoor-api`.
 
 <img src="./assets/index.png" alt="index" style="zoom:100%;" />
 
