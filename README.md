@@ -167,18 +167,18 @@ session in your application.
 
 ```java
 @RequestMapping("callback")
-public Mono<String> callback(String code,String state,ServerWebExchange exchange){
-    String token="";
-    CasdoorUser user=null;
-    try{
-        token=casdoorAuthService.getOAuthToken(code,state);
-        user=casdoorAuthService.parseJwtToken(token);
-    }catch(CasdoorAuthException e){
+public Mono<String> callback(String code,String state,ServerWebExchange exchange) {
+    String token = "";
+    CasdoorUser user = null;
+    try {
+        token = casdoorAuthService.getOAuthToken(code,state);
+        user = casdoorAuthService.parseJwtToken(token);
+    } catch(CasdoorAuthException e) {
     	e.printStackTrace();
     }
-    CasdoorUser finalUser=user;
-    return exchange.getSession().flatMap(session->{
-        session.getAttributes().put("casdoorUser",finalUser);
+    CasdoorUser finalUser = user;
+    return exchange.getSession().flatMap(session -> {
+        session.getAttributes().put("casdoorUser", finalUser);
         return Mono.just("redirect:/");
     });
 }
