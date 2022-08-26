@@ -14,37 +14,37 @@ spring:
 
 
 casdoor:
-  endpoint: http://124.222.224.173:8105
-  client-id: 0d64b7b0c0501d48c55a
-  client-secret: 86e904575ae4f0beef1b0c0a3f35b5c41118c1b8
-  jwt-public-key: "-----BEGIN CERTIFICATE-----\n\
+  endpoint: http://localhost:8000
+  client-id: c25a4de49d293872ade8
+  client-secret: c7f83f66c5717d0cfb9b13af9faed2d1ded4e760
+  certificate: "-----BEGIN CERTIFICATE-----\n\
   MIIE3TCCAsWgAwIBAgIDAeJAMA0GCSqGSIb3DQEBCwUAMCgxDjAMBgNVBAoTBWFk\n\
-  bWluMRYwFAYDVQQDEw1jZXJ0LWJ1aWx0LWluMB4XDTIyMDgxODExMzUyOFoXDTQy\n\
-  MDgxODExMzUyOFowKDEOMAwGA1UEChMFYWRtaW4xFjAUBgNVBAMTDWNlcnQtYnVp\n\
-  bHQtaW4wggIiMA0GCSqGSIb3DQEBAQUAA4ICDwAwggIKAoICAQC/lSF8ywkPC0K0\n\
-  +iW0mEqQdJMlXqYCiPafmdEo5SUoIyEzPvR9DVa1XPCpA1AxZXZDbjGMAoLEAkZQ\n\
-  P/07bnX/vQUkgj7PXEiH//AXiA9d6it/bMsw4AVL/5C9MwXeuniBV6YpkKBA/XJ2\n\
-  wdU75Nm76hiOz8kT6rqrfFDQiGgyPrb4UCTffO67Xt2OOnD9KABX+H3X04uufZuL\n\
-  o5bMXUvrkVkbJCzqZkHot3TH882Hf8dfOesuD1HEVjejo/sYsUAyEL4VnjaE1dEp\n\
-  3/buUpbodFGWE5hHBk4C+W6Td8x+JoZfB+1foL8FIKJirl1fp3eBk9YJv611q6vs\n\
-  rWI/WEcc9wh+llNv7Z1Swi82+5maclwujJ14yq+7JqCn/PIoq5Pi9yFBYqi824/9\n\
-  UPpMiK+jsRNXvo/IidCu9EOssm0tJmV7Xa9ux+OeGCcRpROeC06L3KxI0GXsmHlx\n\
-  SWIUNd8rBidyILsx3Tbg/fMm5eAHXOOAN2PDzLU/eCQQB/j+L5TgxpwVLCqPkyv9\n\
-  zZ8+76zGlSXjV17G8xduHGaX1bzyUQHJ1exkDgBM/64g/V1j8JE6Ewe0JUVcwo7E\n\
-  2hcOJzoKgJEHc/FsZxF0F+njhCS9LArC7bjL88KXxRa3+IJzTuLbD3Ec9H/qnkEL\n\
-  o/odb0+2Ns9XrlBM3/jagb6twEL/pQIDAQABoxAwDjAMBgNVHRMBAf8EAjAAMA0G\n\
-  CSqGSIb3DQEBCwUAA4ICAQAEBIOC94A0zN+p93UU5LNwxU3OdHr2GDyucKsOQfyk\n\
-  AFvkwFeu10Qoee2AtCpxO0IS8svuhbaU2EMeEZe8Rt1ja7RlVfDTV5rWdmH6el/B\n\
-  SDX5cYu2c0WDDi7gVYvdEL2RUWU2d7smAbpjLfV3eqSmrJTiqTpPseR690CGXRJ1\n\
-  /tFKTgpQH7Xh+BCc5yyNRUlkVAfu6m/gLEFhnXJKh5y4sVO71J69+MJ+ZFzdSlVd\n\
-  E4bn2iN7Ks3NwURB0pBbDO1aTyF7xEGZ2gpbvEYa4VIzsvjIUFzLtgchUyuBGwkM\n\
-  yqGWJEHqNct9vvuCzBpQcqrBVOR044umJ70MnhJt2lrV0IOkgSpjDqDUv8E5ofOs\n\
-  sSLT17R388lI3UjolkWYVmix1Tok0t/7XfwhDXJOPwblGsq0iComU5iNJS7zgzGY\n\
-  lVwrdT0qIZ5viJNIS7oi3EPRbsW5AjOel6MIJcLlravCLNviJcFcAiUGyWJf+me6\n\
-  u0mPbV5ZQLLKdKbi06+FRJLbgs0fXZBQsjLOuzlBwcmG4Mc//m2zLt7jl5ZQFEp3\n\
-  SoKIUfM4ETXzk+LjLIcGmaVs+JMJfmh7sOdkHdgJrj+C9EoYNau3CerMnIvQGV4i\n\
-  P1twHnLRweQQY3h5qBvFjPprhn+6tFiL2e05NiGfMVO/+qodLUjesZedSRUnM1u8\n\
-  uA==\n\
+  bWluMRYwFAYDVQQDEw1jZXJ0LWJ1aWx0LWluMB4XDTIyMDgyMjEyMzEzN1oXDTQy\n\
+  MDgyMjEyMzEzN1owKDEOMAwGA1UEChMFYWRtaW4xFjAUBgNVBAMTDWNlcnQtYnVp\n\
+  bHQtaW4wggIiMA0GCSqGSIb3DQEBAQUAA4ICDwAwggIKAoICAQC0RcYYmt5VZQE3\n\
+  ayIH+Z+KWEuAIdhMuK289QMKBbNf24JFTaki9dB0QwUa8LBXdSFiwYmOSuNhG+MS\n\
+  +NSEDHkfnHRAAyF3198YypR0vbtf9m91KglIcodgCbebSDEbXOvcUAPuGiHEjk15\n\
+  xzpIiMi3od0FYqqZXdvI2mRXlIpJgQEWK69LSvlky1Uk0GsGxsBUuDV8OJ9sqhXw\n\
+  95b5cPasL056K89p25UJFkV0IrXdkIaHeRPkiOSjQgmrwRFTr4h6b9HmkLiuG8yh\n\
+  uUlDUC4FWfJSSliEAV/UR/ZdHrqGji6uJ5kWdSPtva9h58rw8RiPlXgxb2161QJm\n\
+  IcVwwbau6I/QSiP/MPZI/ujnYnd+JCcaV1McYP2kZiVSAtRSOTyyT1Rn/31/3ujx\n\
+  OHsiWUQUEvnPX2VyA6r5qKcj8gH198IXdxtJooCzw1i/70Hvy4/I+jnczkrO6LYq\n\
+  kzzPkMGaPZ+VB3SozWTcCQVT5l0McxeT+jfqx5abpK1VbWX4BVcR/qa7Zu3G4RQK\n\
+  Dz2TIRELedHE3xqLy8mJjUF3UYylGW2o6sU9sPdseWpu8hNeGPng+K/M5q8zcRGf\n\
+  anOicGKLuvL4bCUhCCyF1bJMVjp+fPeeT0LiIdLFiPjMOamMjH0rSsjUPcL9eQxY\n\
+  eOQDiGn4hXc5vIQZbB596wfPszy8EwIDAQABoxAwDjAMBgNVHRMBAf8EAjAAMA0G\n\
+  CSqGSIb3DQEBCwUAA4ICAQCOCDCeGKQV5ow/O/mGx5au5lteqELTgUiuCVDQ7679\n\
+  HW6dKSWNg+eFsxmspWkEsGPCV5yS6nDkflZ9m+qSL5fGyw8JEg9Fw9Xof+Ye/9qW\n\
+  XmixFSm7KqH1Y56Ite5PblqElY1eb5hGZZzlOJlrsBu7/AnasRxNUXQm1596oTam\n\
+  kfTyki0mxsvp7fnv6/NSjM4OSc6NnUrMlEp11BGVYrWZ+QFQq8YiiRJtzvbEQ1RF\n\
+  N2qKkab/giUS7DgX8vo+YRheUJ2WqZuOvPBoDmfZ9FqmTEmYxToLhg6TJViiFNdy\n\
+  HfY3wtxBBikIGpkgzaItujMX8XGMbjN8/Vpo6jH/Lil3jBa7Il8VU7F07BsWQ8oN\n\
+  1ul7NsnRR3X2jJAyahQSBrh+WMe+NfB4VP3CgDfNbbQ72SiIxO+LJyXcuKb9a1nP\n\
+  M+9DOgj4RpkzD8Xk8z+L/dz+w/iM2UE6L8OTJ5iFY2xwmu4pBvwybbofkrXi/JF/\n\
+  9bCEiEF8mIWRxv/k8IjgZ1dt4q55xbJk0hoDGANmzw4s+X3DhWlWKBsmpj8eeiHi\n\
+  V8UBd7e11I2JIbPxxKKYZg3fRMxEFM45jR46aMCLrlbcGNobvF5qNjsMVYgdt01U\n\
+  nbo4K/HeWnbWaqyb3bKGGSbLHBEybn3Ns4oQ0Yvuigpo8f5Hfln+jC/7Ep3oOGCs\n\
+  8w==\n\
   -----END CERTIFICATE-----"
   organization-name: built-in
   application-name: app-built-in
