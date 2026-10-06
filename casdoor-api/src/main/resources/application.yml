@@ -2,6 +2,16 @@ server:
   port: 9091
   servlet:
     context-path: /api
+
 spring:
   application:
     name: casdoor-api
+
+# casdoor-spring-boot-starter makes this service verify the Casdoor access tokens (JWT resource server)
+# The Casdoor application, the defaults are the public demo server https://door.casdoor.com
+casdoor:
+  endpoint: https://door.casdoor.com
+  client-id: 294b09fbc17f95daf2fe
+  client-secret: dd8982f7046ccba1bbd7851d5c1ece4e52bf039d
+  organization-name: casbin
+  application-name: app-vue-python-example

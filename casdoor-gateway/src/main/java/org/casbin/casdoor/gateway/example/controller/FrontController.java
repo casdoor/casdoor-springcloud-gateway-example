@@ -13,66 +13,30 @@
 // limitations under the License.
 package org.casbin.casdoor.gateway.example.controller;
 
-import javax.annotation.Resource;
-import org.casbin.casdoor.entity.CasdoorUser;
-import org.casbin.casdoor.exception.CasdoorAuthException;
-import org.casbin.casdoor.service.CasdoorAuthService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.core.oidc.user.OidcUser;
+import org.springframework.security.web.reactive.result.view.CsrfRequestDataValueProcessor;
+import org.springframework.security.web.server.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.reactive.result.view.Rendering;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
-/**
- * @author conghuhu
- */
 @Controller
 public class FrontController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(FrontController.class);
-
-    @Resource
-    private CasdoorAuthService casdoorAuthService;
-
-    @RequestMapping("toLogin")
-    public Mono<String> toLogin() {
-        return Mono.just("toLogin");
-    }
-
-    @RequestMapping("login")
-    public Mono<String> login() {
-        return Mono.just("redirect:" + casdoorAuthService.getSigninUrl("http://localhost:9090/callback"));
-    }
-
-    @RequestMapping("/")
-    public Mono<String> index() {
-        return Mono.just("index");
-    }
-
-    @RequestMapping("callback")
-    public Mono<String> callback(String code, String state, ServerWebExchange exchange) {
-        String token = "";
-        CasdoorUser user = null;
-        try {
-            token = casdoorAuthService.getOAuthToken(code, state);
-            user = casdoorAuthService.parseJwtToken(token);
-        } catch (CasdoorAuthException e) {
-            e.printStackTrace();
-        }
-        CasdoorUser finalUser = user;
-        return exchange.getSession().flatMap(session -> {
-            session.getAttributes().put("casdoorUser", finalUser);
-            return Mono.just("redirect:/");
+    @GetMapping("/")
+    public Mono<Rendering> index(@AuthenticationPrincipal OidcUser user, ServerWebExchange exchange) {
+        // the CSRF token protects the logout form and the POST requests to the APIs
+        Mono<CsrfToken> csrfToken = exchange.getAttributeOrDefault(CsrfToken.class.getName(), Mono.empty());
+        return csrfToken.map(token -> {
+            exchange.getAttributes().put(CsrfRequestDataValueProcessor.DEFAULT_CSRF_ATTR_NAME, token);
+            Rendering.Builder<?> view = Rendering.view("index").modelAttribute("csrfToken", token);
+            if (user != null) {
+                view.modelAttribute("user", user);
+            }
+            return view.build();
         });
     }
-
-    @RequestMapping("logout")
-    public Mono<String> logout(ServerWebExchange exchange) {
-        return exchange.getSession().flatMap(session -> {
-            session.getAttributes().remove("casdoorUser");
-            return Mono.just("toLogin");
-        });
-    }
-
 }

@@ -6,45 +6,21 @@ spring:
     name: casdoor-gateway
   cloud:
     gateway:
-      routes:
-        - id: api-route
-          uri: http://localhost:9091
-          predicates:
-            - Path=/api/**
+      server:
+        webflux:
+          routes:
+            - id: api-route
+              uri: http://localhost:9091
+              predicates:
+                - Path=/api/**
+              filters:
+                # pass the access token of the signed-in user to the API as "Authorization: Bearer ..."
+                - TokenRelay=
 
-
+# The Casdoor application, the defaults are the public demo server https://door.casdoor.com
 casdoor:
-  endpoint: http://localhost:8000
-  client-id: c25a4de49d293872ade8
-  client-secret: c7f83f66c5717d0cfb9b13af9faed2d1ded4e760
-  certificate: "-----BEGIN CERTIFICATE-----\n\
-  MIIE3TCCAsWgAwIBAgIDAeJAMA0GCSqGSIb3DQEBCwUAMCgxDjAMBgNVBAoTBWFk\n\
-  bWluMRYwFAYDVQQDEw1jZXJ0LWJ1aWx0LWluMB4XDTIyMDgyMjEyMzEzN1oXDTQy\n\
-  MDgyMjEyMzEzN1owKDEOMAwGA1UEChMFYWRtaW4xFjAUBgNVBAMTDWNlcnQtYnVp\n\
-  bHQtaW4wggIiMA0GCSqGSIb3DQEBAQUAA4ICDwAwggIKAoICAQC0RcYYmt5VZQE3\n\
-  ayIH+Z+KWEuAIdhMuK289QMKBbNf24JFTaki9dB0QwUa8LBXdSFiwYmOSuNhG+MS\n\
-  +NSEDHkfnHRAAyF3198YypR0vbtf9m91KglIcodgCbebSDEbXOvcUAPuGiHEjk15\n\
-  xzpIiMi3od0FYqqZXdvI2mRXlIpJgQEWK69LSvlky1Uk0GsGxsBUuDV8OJ9sqhXw\n\
-  95b5cPasL056K89p25UJFkV0IrXdkIaHeRPkiOSjQgmrwRFTr4h6b9HmkLiuG8yh\n\
-  uUlDUC4FWfJSSliEAV/UR/ZdHrqGji6uJ5kWdSPtva9h58rw8RiPlXgxb2161QJm\n\
-  IcVwwbau6I/QSiP/MPZI/ujnYnd+JCcaV1McYP2kZiVSAtRSOTyyT1Rn/31/3ujx\n\
-  OHsiWUQUEvnPX2VyA6r5qKcj8gH198IXdxtJooCzw1i/70Hvy4/I+jnczkrO6LYq\n\
-  kzzPkMGaPZ+VB3SozWTcCQVT5l0McxeT+jfqx5abpK1VbWX4BVcR/qa7Zu3G4RQK\n\
-  Dz2TIRELedHE3xqLy8mJjUF3UYylGW2o6sU9sPdseWpu8hNeGPng+K/M5q8zcRGf\n\
-  anOicGKLuvL4bCUhCCyF1bJMVjp+fPeeT0LiIdLFiPjMOamMjH0rSsjUPcL9eQxY\n\
-  eOQDiGn4hXc5vIQZbB596wfPszy8EwIDAQABoxAwDjAMBgNVHRMBAf8EAjAAMA0G\n\
-  CSqGSIb3DQEBCwUAA4ICAQCOCDCeGKQV5ow/O/mGx5au5lteqELTgUiuCVDQ7679\n\
-  HW6dKSWNg+eFsxmspWkEsGPCV5yS6nDkflZ9m+qSL5fGyw8JEg9Fw9Xof+Ye/9qW\n\
-  XmixFSm7KqH1Y56Ite5PblqElY1eb5hGZZzlOJlrsBu7/AnasRxNUXQm1596oTam\n\
-  kfTyki0mxsvp7fnv6/NSjM4OSc6NnUrMlEp11BGVYrWZ+QFQq8YiiRJtzvbEQ1RF\n\
-  N2qKkab/giUS7DgX8vo+YRheUJ2WqZuOvPBoDmfZ9FqmTEmYxToLhg6TJViiFNdy\n\
-  HfY3wtxBBikIGpkgzaItujMX8XGMbjN8/Vpo6jH/Lil3jBa7Il8VU7F07BsWQ8oN\n\
-  1ul7NsnRR3X2jJAyahQSBrh+WMe+NfB4VP3CgDfNbbQ72SiIxO+LJyXcuKb9a1nP\n\
-  M+9DOgj4RpkzD8Xk8z+L/dz+w/iM2UE6L8OTJ5iFY2xwmu4pBvwybbofkrXi/JF/\n\
-  9bCEiEF8mIWRxv/k8IjgZ1dt4q55xbJk0hoDGANmzw4s+X3DhWlWKBsmpj8eeiHi\n\
-  V8UBd7e11I2JIbPxxKKYZg3fRMxEFM45jR46aMCLrlbcGNobvF5qNjsMVYgdt01U\n\
-  nbo4K/HeWnbWaqyb3bKGGSbLHBEybn3Ns4oQ0Yvuigpo8f5Hfln+jC/7Ep3oOGCs\n\
-  8w==\n\
-  -----END CERTIFICATE-----"
-  organization-name: built-in
-  application-name: app-built-in
+  endpoint: https://door.casdoor.com
+  client-id: 294b09fbc17f95daf2fe
+  client-secret: dd8982f7046ccba1bbd7851d5c1ece4e52bf039d
+  organization-name: casbin
+  application-name: app-vue-python-example

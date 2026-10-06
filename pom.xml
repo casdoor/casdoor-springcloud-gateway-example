@@ -10,20 +10,19 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.6.11</version>
+		<version>3.5.16</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>org.casbin</groupId>
 	<artifactId>casdoor-spring-cloud-gateway-example</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>casdoor-spring-cloud-gateway-example</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Sign in with Casdoor in Spring Cloud Gateway</description>
 	<properties>
-		<java.version>11</java.version>
-		<spring-cloud.version>2021.0.3</spring-cloud.version>
-		<spring-boot.version>2.6.11</spring-boot.version>
+		<java.version>17</java.version>
+		<spring-cloud.version>2025.0.3</spring-cloud.version>
+		<casdoor-spring-boot-starter.version>2.0.1</casdoor-spring-boot-starter.version>
 	</properties>
-
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -33,7 +32,11 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
+			<dependency>
+				<groupId>org.casbin</groupId>
+				<artifactId>casdoor-spring-boot-starter</artifactId>
+				<version>${casdoor-spring-boot-starter.version}</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
-
 </project>

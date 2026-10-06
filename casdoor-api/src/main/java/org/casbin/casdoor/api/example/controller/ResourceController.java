@@ -15,6 +15,8 @@ package org.casbin.casdoor.api.example.controller;
 
 import java.util.concurrent.atomic.AtomicInteger;
 import org.casbin.casdoor.api.example.vo.Result;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,14 +34,17 @@ public class ResourceController {
     private final static String RESOURCE_NAME = "resource";
 
     @GetMapping("getResource")
-    public Result<String> getResource() {
-        return Result.OK("success get " + RESOURCE_NAME + count.get());
-
+    public Result<String> getResource(@AuthenticationPrincipal Jwt jwt) {
+        return Result.OK(userOf(jwt) + " got " + RESOURCE_NAME + count.get());
     }
 
     @PostMapping("updateResource")
-    public Result<String> updateResource() {
-        return Result.OK("success update, resource now is: " + RESOURCE_NAME + count.incrementAndGet());
+    public Result<String> updateResource(@AuthenticationPrincipal Jwt jwt) {
+        return Result.OK(userOf(jwt) + " updated, resource now is: " + RESOURCE_NAME + count.incrementAndGet());
     }
 
+    // the claims of a Casdoor access token include the user's owner (organization) and name
+    private static String userOf(Jwt jwt) {
+        return jwt.getClaimAsString("owner") + "/" + jwt.getClaimAsString("name");
+    }
 }

@@ -1,58 +1,48 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>index</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <meta name="_csrf_header" th:content="${csrfToken.headerName}">
+    <meta name="_csrf" th:content="${csrfToken.token}">
+    <title>Casdoor Spring Cloud Gateway Example</title>
 </head>
 <body>
-<div>
-    <h1>Casdoor</h1>
-    <button th:attr="onclick=|getResource()|" type="button">Get Resource</button>
-    <br/>
-    <button style="margin-top: 10px;" th:attr="onclick=|updateResource()|" type="button">Update Resource</button>
-    <br/>
-    <div id="res" style="margin-top: 20px"></div>
+<h1>Casdoor Spring Cloud Gateway Example</h1>
+
+<div th:if="${user == null}">
+    <p>The APIs behind the gateway need a signed-in user.</p>
+    <a th:href="@{/oauth2/authorization/casdoor}">Login with Casdoor</a>
 </div>
+
+<div th:if="${user != null}">
+    <p>Signed in as <b th:text="${user.name}">user</b> (<span th:text="${user.email}">email</span>)</p>
+    <form th:action="@{/logout}" method="post">
+        <button type="submit">Logout</button>
+    </form>
+</div>
+
+<p>
+    <button type="button" onclick="callApi('GET', '/api/resource/getResource')">Get Resource</button>
+    <button type="button" onclick="callApi('POST', '/api/resource/updateResource')">Update Resource</button>
+</p>
+<pre id="res"></pre>
+
 <script>
-    function getResource() {
-        $.ajax({
-            url: '/api/resource/getResource',
-            type: 'get',
-            dataType: 'json',
-            success: function (data) {
-                $("#res").text(JSON.stringify(data.result))
-            },
-            error: function (data) {
-                if (data.status === 401) {
-                    window.location.href = '/toLogin'
-                } else {
-                    alert('Timeout!');
+    function callApi(method, url) {
+        const headers = {};
+        if (method !== 'GET') {
+            headers[document.querySelector('meta[name="_csrf_header"]').content] =
+                document.querySelector('meta[name="_csrf"]').content;
+        }
+        fetch(url, {method, headers})
+            .then(res => {
+                if (res.status === 401) {
+                    document.getElementById('res').textContent = '401 Unauthorized, please login first';
+                    return;
                 }
-            }
-        })
-    }
-
-    function updateResource() {
-        $.ajax({
-            url: `/api/resource/updateResource`,
-            type: 'post',
-            dataType: 'json',
-            success: function (data) {
-                $("#res").text(JSON.stringify(data.result))
-            },
-            error: function (data) {
-                if (data.status === 401) {
-                    window.location.href = '/toLogin'
-                } else {
-                    alert('Timeout!');
-                }
-            }
-        })
-    }
-
-    window.onload = function () {
-
+                return res.json().then(data => document.getElementById('res').textContent = JSON.stringify(data, null, 2));
+            })
+            .catch(e => document.getElementById('res').textContent = String(e));
     }
 </script>
 </body>
